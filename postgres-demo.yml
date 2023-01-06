@@ -77,7 +77,7 @@ services:
       - XPACK_MONITORING_ENABLED=false
     volumes: 
       - ./pipelines/postgres_pipelines.conf:/usr/share/logstash/pipeline/logstash.conf
-      # - ./libs/mysql-connector-java8-5.1.23.jar:/usr/share/logstash/logstash-core/lib/jars/mysql-connector-java8-5.1.23.jar
+      - ./libs/postgresql-42.2.5.jar:/usr/share/logstash/logstash-core/lib/jars/postgresql-42.2.5.jar
     ports:
       - 9300:9300
       - 5044:5044
