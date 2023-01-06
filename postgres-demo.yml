@@ -1,0 +1,97 @@
+version: '3'
+services:
+  db:
+    container_name: pg_container
+    image: postgis/postgis
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg-dataset:/var/lib/postgresql/data
+    networks:
+      - share-network
+  pgadmin:
+    container_name: pgadmin4_container5
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5060:80"
+  elasticsearch:
+    image: amazon/opendistro-for-elasticsearch:1.13.2
+    container_name: elasticsearch
+    environment:
+        - bootstrap.memory_lock=true
+        - cluster.name=odfe-cluster
+        - discovery.type=single-node
+        - XPACK_MONITORING_ENABLED=true
+        - "ES_JAVA_OPTS=-Xms512m -Xmx512m" # minimum and maximum Java heap size, recommend setting both to 50% of system RAM
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536 # maximum number of open files for the Elasticsearch user, set to at least 65536 on modern systems
+        hard: 65536
+    volumes:
+          - odfe-data5:/usr/share/elasticsearch/data
+          # - ./functions/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    ports:
+          - 9200:9200
+          - 9600:9600 # required for Performance Analyzer
+    networks:
+      - share-network
+
+
+  kibana:
+      image: opensearchproject/opensearch-dashboards:latest
+      container_name: odfe-kibana5
+      ports:
+          - 5601:5601
+      environment:
+        OPENSEARCH_HOSTS: '["https://elasticsearch:9200"]'
+        DISABLE_SECURITY_DASHBOARDS_PLUGIN : "true"        
+      volumes:
+          - ./functions/elasticSearchConfig/kibana.yml:/usr/share/kibana/config/kibana.yml
+      networks:
+      - share-network
+    
+  logstash:
+    image: venkatsai786/sai-logstash:latest
+    container_name: sai_logstash
+    environment:
+      - LOGSTASH_JDBC_URL=jdbc:postgresql://db:5432/testDb?useSSL=false
+      - LOGSTASH_JDBC_DRIVER=org.postgresql.Driver
+      - LOGSTASH_JDBC_USERNAME=yash
+      - LOGSTASH_JDBC_PASSWORD=password
+      - LOGSTASH_OPENSEARCH_HOST=https://elasticsearch:9200
+      - LOGSTASH_OPENSEARCH_USER=admin
+      - LOGSTASH_OPENSEARCH_PASSWORD=admin
+      - XPACK_SECURITY_ENABLED=false 
+      - XPACK_REPORTING_ENABLED=false 
+      - XPACK_MONITORING_ENABLED=false
+    volumes: 
+      - ./pipelines/postgres_pipelines.conf:/usr/share/logstash/pipeline/logstash.conf
+      # - ./libs/mysql-connector-java8-5.1.23.jar:/usr/share/logstash/logstash-core/lib/jars/mysql-connector-java8-5.1.23.jar
+    ports:
+      - 9300:9300
+      - 5044:5044
+    networks:
+      - share-network
+    depends_on:
+      - elasticsearch
+      - kibana
+      - db
+
+volumes:
+  odfe-data5:
+  pg-dataset: {}
+
+networks:
+  share-network:
+    driver: bridge

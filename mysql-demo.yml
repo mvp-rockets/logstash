@@ -78,8 +78,7 @@ services:
       - XPACK_REPORTING_ENABLED=false 
       - XPACK_MONITORING_ENABLED=false
     volumes: 
-      - ./logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
-      # - ./logstash/logstash.yml:/etc/logstash/logstash.yml
+      - ./pipelines/mysql_pipelines.conf:/usr/share/logstash/pipeline/logstash.conf
       - ./libs/mysql-connector-java8-5.1.23.jar:/usr/share/logstash/logstash-core/lib/jars/mysql-connector-java8-5.1.23.jar
     ports:
       - 9300:9300
@@ -93,7 +92,7 @@ services:
 
 volumes:
   odfe-data5:
-  mysqldata:
+  mysqldata: {}
 
 networks:
   share-network:
