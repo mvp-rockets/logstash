@@ -12,11 +12,11 @@ This is Logstash project
 
 ### 3. How do I get set up? ###
 
-- Clone the project by clicking this link [git@bitbucket.org:venkatsai1234/logstash.git]
+- Clone the project by clicking this link [git@bitbucket.org:venkatsai1234/logstash.git][id]
 
 ### 4. How to start the project? ###
  
-- Datasync from mysql to elasticSearch(change the mysql-demo.yml to postgres.tml or yourDatabase.yml to sync your data to elasticSearch)
+- Datasync from mysql to elasticSearch(change the mysql-demo.yml to postgres.yml or yourDatabase.yml to sync your data to elasticSearch)
 - docker-compose -f mysql-demo.yml up
 
 ### 5. Where do I see my data? ### 
@@ -24,7 +24,7 @@ This is Logstash project
 - localhost:5601 kibana port
 
 
-## 6. Authors/maintainers/contributors
+### 6. Authors/maintainers/contributors ###
 
 - Venkat Sai (venkatasai.k@napses.com)
 - Yashjeet Luthra (yash@napses.com)
