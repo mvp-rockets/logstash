@@ -19,12 +19,12 @@ This is Logstash project
 - Datasync from mysql to elasticSearch(change the mysql-demo.yml to postgres.yml or yourDatabase.yml to sync your data to elasticSearch)
 - docker-compose -f mysql-demo.yml up
 
-### 5. Where do I see my data? ### 
+### 5. Where do I see my data?  
 
 - localhost:5601 kibana port
 
 
-### 6. Authors/maintainers/contributors ###
+### 6. Authors/maintainers/contributors 
 
 - Venkat Sai (venkatasai.k@napses.com)
 - Yashjeet Luthra (yash@napses.com)
