@@ -1,0 +1,3 @@
+<!-- Deleting from user table of id:2 -->
+
+DELETE FROM users WHERE id = 2;

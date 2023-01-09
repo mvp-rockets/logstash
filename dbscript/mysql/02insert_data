@@ -1,0 +1,4 @@
+-- addding the data into users table
+
+INSERT INTO users(id,name,age)
+VALUES (3, "praveen", 45);

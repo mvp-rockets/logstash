@@ -1,29 +1,30 @@
-# README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+## 1. Introduction
+This is Logstash project
 
-### What is this repository for? ###
+- Datasync from any Database to elasticSearch using Logstash
+## 2. Pre-requirement
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+- Ubuntu 20.04.4 LTS
+- docker(19.xx)
+- docker-compose(1.28.xx)
 
-### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+### 3. How do I get set up? ###
 
-### Contribution guidelines ###
+- Clone the project by clicking this link [git@bitbucket.org:venkatsai1234/logstash.git]
 
-* Writing tests
-* Code review
-* Other guidelines
+### 4. How to start the project? ###
+ 
+- Datasync from mysql to elasticSearch(change the mysql-demo.yml to postgres.tml or yourDatabase.yml to sync your data to elasticSearch)
+- docker-compose -f mysql-demo.yml up
 
-### Who do I talk to? ###
+### 5. Where do I see my data? ### 
 
-* Repo owner or admin
-* Other community or team contact
+- localhost:5601 kibana port
+
+
+## 6. Authors/maintainers/contributors
+
+- Venkat Sai (venkatasai.k@napses.com)
+- Yashjeet Luthra (yash@napses.com)

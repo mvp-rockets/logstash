@@ -5,23 +5,16 @@ services:
     image: postgis/postgis
     restart: always
     environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "root"
+      POSTGRES_DATABASE: "testDb"
     ports:
       - "5432:5432"
     volumes:
       - pg-dataset:/var/lib/postgresql/data
     networks:
       - share-network
-  pgadmin:
-    container_name: pgadmin4_container5
-    image: dpage/pgadmin4
-    restart: always
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: root
-    ports:
-      - "5060:80"
+
   elasticsearch:
     image: amazon/opendistro-for-elasticsearch:1.13.2
     container_name: elasticsearch
@@ -40,7 +33,6 @@ services:
         hard: 65536
     volumes:
           - odfe-data5:/usr/share/elasticsearch/data
-          # - ./functions/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     ports:
           - 9200:9200
           - 9600:9600 # required for Performance Analyzer
@@ -57,7 +49,7 @@ services:
         OPENSEARCH_HOSTS: '["https://elasticsearch:9200"]'
         DISABLE_SECURITY_DASHBOARDS_PLUGIN : "true"        
       volumes:
-          - ./functions/elasticSearchConfig/kibana.yml:/usr/share/kibana/config/kibana.yml
+          - ./kibana.yml:/usr/share/kibana/config/kibana.yml
       networks:
       - share-network
     

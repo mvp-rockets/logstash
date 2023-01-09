@@ -1,0 +1,4 @@
+<!-- updating the age in user table of id:1 -->
+
+UPDATE users SET age = 20 WHERE id = 1; 
+
