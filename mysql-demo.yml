@@ -54,8 +54,8 @@ services:
       - share-network
     
   logstash:
-    image: venkatsai786/sai-logstash:latest
-    container_name: sai_logstash
+    image: napses/mvp-logstash:latest
+    container_name: mvp_logstash
     environment:
       - LOGSTASH_JDBC_URL=jdbc:mysql://db:3306/testDb?useSSL=false
       - LOGSTASH_JDBC_DRIVER=com.mysql.cj.jdbc.Driver
