@@ -33,8 +33,6 @@ Customize configuration for logstash
 - modify file `mysql_pipelines.conf` in docker container
 
 ```yml
-
-```
 input {
     jdbc {
         jdbc_connection_string => "${LOGSTASH_JDBC_URL}"
