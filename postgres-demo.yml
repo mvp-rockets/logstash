@@ -5,6 +5,7 @@ services:
     image: postgis/postgis
     restart: always
     environment:
+      POSTGRES_ROOT_PASSWORD: "root"
       POSTGRES_USER: "root"
       POSTGRES_PASSWORD: "root"
       POSTGRES_DATABASE: "testDb"
@@ -54,13 +55,13 @@ services:
       - share-network
     
   logstash:
-    image: venkatsai786/sai-logstash:latest
-    container_name: sai_logstash
+    image: napses/mvp-logstash:latest
+    container_name: mvp_logstash
     environment:
       - LOGSTASH_JDBC_URL=jdbc:postgresql://db:5432/testDb?useSSL=false
       - LOGSTASH_JDBC_DRIVER=org.postgresql.Driver
-      - LOGSTASH_JDBC_USERNAME=yash
-      - LOGSTASH_JDBC_PASSWORD=password
+      - LOGSTASH_JDBC_USERNAME=root
+      - LOGSTASH_JDBC_PASSWORD=root
       - LOGSTASH_OPENSEARCH_HOST=https://elasticsearch:9200
       - LOGSTASH_OPENSEARCH_USER=admin
       - LOGSTASH_OPENSEARCH_PASSWORD=admin

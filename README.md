@@ -23,7 +23,7 @@ docker-compose -f mysql-demo.yml up
 Stoping 
 
 ```bash
-docker-compose down 
+docker-compose -f mysql-demo.yml down 
 ```
 
 #### Customize configuration
