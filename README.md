@@ -8,13 +8,14 @@ This is Logstash project
 - Ubuntu 20.04.4 LTS
 - docker(19.xx)
 - docker-compose(1.28.xx)
+- Java Database connectivity(JDBC) http://www.java2s.com/Code/Jar/m/Downloadmysqlconnectorjava85123jar.htm
 
 
 ### 3. How do I use it ? ###
 
 #### Starting logstash 
 
-Starting logstash input jdbc
+Starting logstash
 
 ```bash
 docker-compose -f mysql-demo.yml up
@@ -56,7 +57,6 @@ Environtment example
 
 - LOGSTASH_JDBC_DRIVER_JAR_LOCATION: 
     - for MySQL 5.7+ Database: `/usr/share/logstash/logstash-core/lib/jars/mysql-connector-java.jar`
-    - for PostgreSQL 9.6+ Database: `/usr/share/logstash-core/lib/jars/logstash/postgresql.jar`
 - LOGSTASH_JDBC_DRIVER: `com.mysql.jdbc.Driver`
 - LOGSTASH_JDBC_URL: `jdbc:mysql://[host]:[port]/[database-name]`
 - LOGSTASH_JDBC_USERNAME: `database_user`
