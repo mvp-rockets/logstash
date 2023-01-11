@@ -63,4 +63,5 @@ Environtment example
 - LOGSTASH_JDBC_PASSWORD: `database_user_password`
 
 
-
+Filter plugin example
+- Refer the following link https://www.javacodegeeks.com/2017/10/aggregate-index-data-elasticsearch-using-logstash-jdbc.html
