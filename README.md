@@ -64,4 +64,4 @@ Environtment example
 
 
 Filter plugin example
-- 
+- Refer the following link https://www.javacodegeeks.com/2017/10/aggregate-index-data-elasticsearch-using-logstash-jdbc.html
