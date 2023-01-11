@@ -63,4 +63,5 @@ Environtment example
 - LOGSTASH_JDBC_PASSWORD: `database_user_password`
 
 
-
+Filter plugin example
+- 
