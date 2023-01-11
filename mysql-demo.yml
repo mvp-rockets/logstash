@@ -54,7 +54,10 @@ services:
       - share-network
     
   logstash:
-    image: napses/mvp-logstash:latest
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+    # image: napses/mvp-logstash:latest
     container_name: mvp_logstash
     environment:
       - LOGSTASH_JDBC_URL=jdbc:mysql://db:3306/testDb?useSSL=false
@@ -68,7 +71,7 @@ services:
       - XPACK_REPORTING_ENABLED=false 
       - XPACK_MONITORING_ENABLED=false
     volumes: 
-      - ./pipelines/mysql_pipelines.conf:/usr/share/logstash/pipeline/logstash.conf
+      - ./pipelines/mysql_sqs_pipeline.conf:/usr/share/logstash/pipeline/logstash.conf
       - ./libs/mysql-connector-java8-5.1.23.jar:/usr/share/logstash/logstash-core/lib/jars/mysql-connector-java8-5.1.23.jar
     ports:
       - 9300:9300
