@@ -54,7 +54,10 @@ services:
       - share-network
     
   logstash:
-    image: napses/mvp-logstash:latest
+    # image: napses/mvp-logstash:latest
+    build:
+      context: .
+      dockerfile: ./Dockerfile
     container_name: mvp_logstash
     environment:
       - LOGSTASH_JDBC_URL=jdbc:mysql://db:3306/testDb?useSSL=false
