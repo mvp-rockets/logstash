@@ -7,3 +7,4 @@ RUN /usr/share/logstash/bin/logstash-plugin install logstash-integration-aws
 
 
 
+COPY ./libs/*.jar /usr/share/logstash/logstash-core/lib/jars/
