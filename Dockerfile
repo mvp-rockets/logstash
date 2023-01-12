@@ -7,4 +7,5 @@ RUN /usr/share/logstash/bin/logstash-plugin install logstash-integration-aws
 
 
 
-COPY ./libs/*.jar /usr/share/logstash/logstash-core/lib/jars/
+COPY ./libs/mysql-connector-java8-5.1.23.jar /usr/share/logstash/logstash-core/lib/jars/mysql-connector-java8-5.1.23.jar
+COPY ./libs/postgresql-42.2.5.jar /usr/share/logstash/logstash-core/lib/jars/postgresql-42.2.5.jar
