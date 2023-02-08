@@ -54,10 +54,10 @@ services:
       - share-network
     
   logstash:
-    # image: napses/mvp-logstash:latest
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+    image: napses/mvp-logstash:latest
+    # build:
+    #   context: .
+    #   dockerfile: ./Dockerfile
     container_name: mvp_logstash
     environment:
       - LOGSTASH_JDBC_URL=jdbc:mysql://db:3306/testDb?useSSL=false
@@ -72,6 +72,8 @@ services:
       - XPACK_MONITORING_ENABLED=false
     volumes: 
       - ./pipelines/mysql_pipelines.conf:/usr/share/logstash/pipeline/logstash.conf
+      # - ./pipelines/dead_letter_queue.conf:/usr/share/logstash/pipeline/dead_letter_queue.conf
+      - ./pq-dlq.yml:/usr/share/pq-dlq/config/pq-dlq.yml
     ports:
       - 9300:9300
       - 5044:5044
