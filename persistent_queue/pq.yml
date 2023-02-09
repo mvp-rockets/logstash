@@ -1,0 +1,10 @@
+pipeline.batch.size: 125
+pipeline.batch.delay: 50
+queue.type: persisted
+path.queue: path.data/queue
+queue.checkpoint.acks: 0
+queue.checkpoint.writes: 0
+queue.checkpoint.interval: 0
+
+
+
