@@ -49,7 +49,11 @@ input {
     }
 }
 output {
-    stdout { codec => json_lines }
+    stdout {
+    codec => rubydebug {
+      metadata => true # This makes the logs to appear in console
+      }
+    }
 }
 ```
 
@@ -65,3 +69,25 @@ Environtment example
 
 Filter plugin example
 - Refer the following link https://www.javacodegeeks.com/2017/10/aggregate-index-data-elasticsearch-using-logstash-jdbc.html
+
+
+Customize configuration for logstash AWS-SQS
+
+```yml
+input pluigin same as above
+only output plugin key,values will be different for aws-sqs
+output{
+    stdout {
+    codec => rubydebug {
+      metadata => true # This makes the logs to appear in console
+    }
+}
+    sqs {
+        queue => "${LOGSTASH_SQS_NAME}"
+        region => "${LOGSTASH_AWS_REGION}"
+        access_key_id => "${LOGSTASH_AWS_ACCESS_KEY}"
+        secret_access_key => "${LOGSTASH_AWS_SECRET_ACCESS_KEY}"
+    }
+}
+the values will be supplied from the mysql-sqs-demo.yml file
+```
